@@ -63,6 +63,7 @@ namespace CompraVentaCarrosApi
                         ClockSkew=TimeSpan.Zero
                     };
                 });
+            services.AddScoped<IEmailServices, EmailServices>();
             services.AddScoped<IUserServices, UserServices>();
             services.AddControllers();
             services.AddSwaggerGen(c =>

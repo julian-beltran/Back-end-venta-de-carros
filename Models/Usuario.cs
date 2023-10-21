@@ -13,7 +13,8 @@ namespace CompraVentaCarrosApi.Models
         public int? IdPersona { get; set; }
         public string Email { get; set; }
         public int? IdRol { get; set; }
-
+        public string TokenContraseña { get; set; }
+        public DateTime? ExpTokenContraseña { get; set; }
 
         public virtual Persona IdPersonaNavigation { get; set; }
         public virtual Rol IdRolNavigation { get; set; }

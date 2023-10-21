@@ -56,6 +56,7 @@ namespace CompraVentaCarrosApi.Services
                     {
                         new Claim(ClaimTypes.Name, $"{persona.Nombre} {persona.Apellido}"),
                         new Claim(ClaimTypes.Role, rol.Name),
+                        new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
                         
 
                     }),

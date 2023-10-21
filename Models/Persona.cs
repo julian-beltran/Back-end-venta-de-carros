@@ -10,6 +10,7 @@ namespace CompraVentaCarrosApi.Models
         public Persona()
         {
             Usuarios = new HashSet<Usuario>();
+            Vehiculos = new HashSet<Vehiculo>();
             Venta = new HashSet<Ventum>();
         }
 
@@ -23,6 +24,7 @@ namespace CompraVentaCarrosApi.Models
         public int? Edad { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Vehiculo> Vehiculos { get; set; }
         public virtual ICollection<Ventum> Venta { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
-//Scaffold-DBContext "Server=DESKTOP-PB1NSRB;Database=VENTACARROS;User Id=julian;password=1234;Trusted_Connection=False;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+
 namespace CompraVentaCarrosApi.Models
 {
     public partial class VENTACARROSContext : DbContext
@@ -134,9 +134,15 @@ namespace CompraVentaCarrosApi.Models
                     .IsUnicode(false)
                     .HasColumnName("email");
 
+                entity.Property(e => e.ExpTokenContraseña).HasColumnType("datetime");
+
                 entity.Property(e => e.IdPersona).HasColumnName("idPersona");
 
                 entity.Property(e => e.IdRol).HasColumnName("idRol");
+
+                entity.Property(e => e.TokenContraseña)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Usuario1)
                     .HasMaxLength(500)
@@ -160,10 +166,14 @@ namespace CompraVentaCarrosApi.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Aprovacion).HasColumnName("aprovacion");
+
                 entity.Property(e => e.Carroseria)
                     .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("carroseria");
+
+                entity.Property(e => e.IdPersona).HasColumnName("idPersona");
 
                 entity.Property(e => e.Imagen1)
                     .HasColumnType("image")
@@ -199,6 +209,11 @@ namespace CompraVentaCarrosApi.Models
                 entity.Property(e => e.Precio)
                     .HasColumnType("decimal(16, 2)")
                     .HasColumnName("precio");
+
+                entity.HasOne(d => d.IdPersonaNavigation)
+                    .WithMany(p => p.Vehiculos)
+                    .HasForeignKey(d => d.IdPersona)
+                    .HasConstraintName("FK_Vehiculo_Persona");
             });
 
             modelBuilder.Entity<Ventum>(entity =>

@@ -1,12 +1,15 @@
 ﻿using CompraVentaCarrosApi.Models;
+using CompraVentaCarrosApi.Models.Commons;
 using CompraVentaCarrosApi.Models.Request;
 using CompraVentaCarrosApi.Models.Response;
 using CompraVentaCarrosApi.Services;
 using CompraVentaCarrosApi.Tools;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,10 +23,14 @@ namespace CompraVentaCarrosApi.Controllers
     public class AuthController : ControllerBase
     {
         public IUserServices _userServices;
-
-        public AuthController(IUserServices userServices)
+        private readonly IConfiguration _configuration;
+        private readonly IEmailServices _emailServices;
+        public AuthController(IUserServices userServices, IConfiguration configuration, IEmailServices emailService)
         {
             _userServices = userServices;
+            _configuration = configuration;
+            _emailServices = emailService;
+            
         }
 
         // POST api/<AuthController>
@@ -36,7 +43,7 @@ namespace CompraVentaCarrosApi.Controllers
             {
                 respuesta.Exito = 0;
                 respuesta.Mensaje = "Usuario o contraseña incorrecta";
-                return BadRequest(respuesta);
+                return Ok(respuesta);
             }
             respuesta.Exito = 1;
             respuesta.Data = userresponse;
@@ -144,6 +151,83 @@ namespace CompraVentaCarrosApi.Controllers
                 sb.Append("La contraseña debe contener caracteres especiales." + Environment.NewLine);
             return sb.ToString();
         }
+
+        [HttpPost("send-reset-email/{email}")]
+        public IActionResult SendEmail(string email)
+        {
+            Respuesta oRespuesta = new Respuesta();
+            oRespuesta.Exito = 0;
+            using (VENTACARROSContext db = new VENTACARROSContext())
+            {
+                var user = db.Usuarios.Where(a => a.Email == email).FirstOrDefault();
+                if (user is null)
+                {
+                    oRespuesta.Exito = 0;
+                    oRespuesta.Mensaje = "email no Existe";
+                    //return NotFound(new
+                    //{
+                    //    StatusCode = 404,
+                    //    Message= "email No esta registrado"
+                    //});
+                }
+                else
+                {
+                    //var tokenBytes = RandomNumberGenerator.GetBytes(64);
+                    var emailToken = Encrypt.GetSHA256(Guid.NewGuid().ToString());
+                    user.TokenContraseña = emailToken;
+                    user.ExpTokenContraseña = DateTime.Now.AddMinutes(15);
+                    string from = _configuration["EmailSettings:From"];
+                    var emailModel = new EmailModel(email, "Cambiar Contraseña!!", EmailBody.EmailStringBody(email, emailToken));
+                    _emailServices.SendEmail(emailModel);
+                    db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
+                    oRespuesta.Exito = 1;
+                    oRespuesta.Mensaje = "Email enviado";
+                }
+            }
+            return Ok(oRespuesta);
+        }
+
+
+        [HttpPost("reset-password")]
+        public IActionResult ResetPassword(PasswordRequest passwordRequest)
+        {
+            var newToken = passwordRequest.emailToken.Replace(" ", "+");
+            Respuesta oRespuesta = new Respuesta();
+            oRespuesta.Exito = 0;
+            using (VENTACARROSContext db = new VENTACARROSContext())
+            {
+                var user = db.Usuarios.Where(a => a.Email == passwordRequest.email).FirstOrDefault();
+                if (user is null)
+                {
+                    oRespuesta.Exito = 0;
+                    oRespuesta.Mensaje = "email no Existe";
+                    //return NotFound(new
+                    //{
+                    //    StatusCode = 404,
+                    //    Message= "email No esta registrado"
+                    //});
+                }
+                var tokenCode = user.TokenContraseña;
+                DateTime emailTokenExp = (DateTime)user.ExpTokenContraseña;
+                if(tokenCode != passwordRequest.emailToken || emailTokenExp < DateTime.Now)
+                {
+
+                    oRespuesta.Exito = 0;
+                    oRespuesta.Mensaje = "Link invalido";
+
+                }
+                user.Contraseña= Encrypt.GetSHA256(passwordRequest.newPassword);
+                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                db.SaveChanges();
+                oRespuesta.Exito = 1;
+                oRespuesta.Mensaje = "Contraseña Actualizada";
+
+            }
+            return Ok(oRespuesta);
+
+            }
+
 
 
 

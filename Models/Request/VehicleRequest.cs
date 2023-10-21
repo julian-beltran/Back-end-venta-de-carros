@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace CompraVentaCarrosApi.Models
+namespace CompraVentaCarrosApi.Models.Request
 {
-    public partial class Vehiculo
+    public class VehicleRequest
     {
-        public Vehiculo()
-        {
-            Facturas = new HashSet<Factura>();
-        }
-
         public int Id { get; set; }
         public string Marca { get; set; }
         public string Linea { get; set; }
@@ -26,7 +21,5 @@ namespace CompraVentaCarrosApi.Models
         public int? IdPersona { get; set; }
         public bool? Aprovacion { get; set; }
 
-        public virtual Persona IdPersonaNavigation { get; set; }
-        public virtual ICollection<Factura> Facturas { get; set; }
     }
 }
