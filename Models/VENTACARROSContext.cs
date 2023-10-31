@@ -88,6 +88,11 @@ namespace CompraVentaCarrosApi.Models
 
                 entity.Property(e => e.Edad).HasColumnName("edad");
 
+                entity.Property(e => e.Imagen)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("imagen");
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(500)
                     .IsUnicode(false)
@@ -173,18 +178,25 @@ namespace CompraVentaCarrosApi.Models
                     .IsUnicode(false)
                     .HasColumnName("carroseria");
 
+                entity.Property(e => e.Descripcion)
+                    .IsUnicode(false)
+                    .HasColumnName("descripcion");
+
                 entity.Property(e => e.IdPersona).HasColumnName("idPersona");
 
                 entity.Property(e => e.Imagen1)
-                    .HasColumnType("image")
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
                     .HasColumnName("imagen1");
 
                 entity.Property(e => e.Imagen2)
-                    .HasColumnType("image")
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
                     .HasColumnName("imagen2");
 
                 entity.Property(e => e.Imagen3)
-                    .HasColumnType("image")
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
                     .HasColumnName("imagen3");
 
                 entity.Property(e => e.Kilometraje).HasColumnName("kilometraje");

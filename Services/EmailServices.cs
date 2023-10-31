@@ -35,7 +35,7 @@ namespace CompraVentaCarrosApi.Services
                     client.Authenticate(_config["EmailSettings:From"], _config["EmailSettings:Password"]);
                     client.Send(emailMessage);
                 }
-                catch (Exception ex)
+                catch
                 {
                     throw;
                 }

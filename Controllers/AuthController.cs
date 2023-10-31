@@ -4,6 +4,7 @@ using CompraVentaCarrosApi.Models.Request;
 using CompraVentaCarrosApi.Models.Response;
 using CompraVentaCarrosApi.Services;
 using CompraVentaCarrosApi.Tools;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -25,11 +26,13 @@ namespace CompraVentaCarrosApi.Controllers
         public IUserServices _userServices;
         private readonly IConfiguration _configuration;
         private readonly IEmailServices _emailServices;
-        public AuthController(IUserServices userServices, IConfiguration configuration, IEmailServices emailService)
+        public IAzureStorage _azureStorage;
+        public AuthController(IUserServices userServices, IConfiguration configuration, IEmailServices emailService, IAzureStorage azureStorage)
         {
             _userServices = userServices;
             _configuration = configuration;
             _emailServices = emailService;
+            _azureStorage = azureStorage;
             
         }
 
@@ -53,7 +56,7 @@ namespace CompraVentaCarrosApi.Controllers
 
         // GET api/<AuthController>
         [HttpPost("Register")]
-        public IActionResult Register(RegisterRequest oModel)
+        public IActionResult Register([FromForm] RegisterRequest oModel)
         {
             
             Respuesta oRespuesta = new Respuesta();
@@ -98,6 +101,10 @@ namespace CompraVentaCarrosApi.Controllers
                             {
                                 oPersona.Sexo = 3;
                             }
+                            if (oModel.Imagen is not null)
+                            {
+                                oPersona.Imagen = _azureStorage.SaveFile(AzureContainers.USERS, oModel.Imagen);
+                            }
                             oPersona.Direccion = oModel.Direccion;
                             oPersona.Edad = oModel.Edad;
                             db.Personas.Add(oPersona);
@@ -130,7 +137,7 @@ namespace CompraVentaCarrosApi.Controllers
                     }
                 
             }
-            catch (Exception ex)
+            catch 
             {
                 oRespuesta.Mensaje = "el formulario esta mal diligenciado";
 

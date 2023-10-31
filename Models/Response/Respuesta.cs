@@ -11,4 +11,7 @@ namespace CompraVentaCarrosApi.Models.Response
         public string Mensaje { get; set; }
         public object Data { get; set; }
     }
+
+
+  
 }

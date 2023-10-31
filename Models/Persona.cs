@@ -22,6 +22,7 @@ namespace CompraVentaCarrosApi.Models
         public int? Sexo { get; set; }
         public string Direccion { get; set; }
         public int? Edad { get; set; }
+        public string Imagen { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
         public virtual ICollection<Vehiculo> Vehiculos { get; set; }

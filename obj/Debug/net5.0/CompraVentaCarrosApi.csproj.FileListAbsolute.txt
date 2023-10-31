@@ -66,3 +66,9 @@ C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\MimeKit.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\NETCore.MailKit.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\BouncyCastle.Crypto.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Azure.Storage.Common.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\System.IO.Hashing.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\System.Memory.Data.dll

@@ -20,11 +20,12 @@ namespace CompraVentaCarrosApi.Models
         public long? Kilometraje { get; set; }
         public string Placa { get; set; }
         public decimal? Precio { get; set; }
-        public byte[] Imagen1 { get; set; }
-        public byte[] Imagen2 { get; set; }
-        public byte[] Imagen3 { get; set; }
         public int? IdPersona { get; set; }
         public bool? Aprovacion { get; set; }
+        public string Imagen1 { get; set; }
+        public string Imagen2 { get; set; }
+        public string Imagen3 { get; set; }
+        public string Descripcion { get; set; }
 
         public virtual Persona IdPersonaNavigation { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }

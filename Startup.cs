@@ -65,6 +65,7 @@ namespace CompraVentaCarrosApi
                 });
             services.AddScoped<IEmailServices, EmailServices>();
             services.AddScoped<IUserServices, UserServices>();
+            services.AddScoped<IAzureStorage, AzureStorage>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
