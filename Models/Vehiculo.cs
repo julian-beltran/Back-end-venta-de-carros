@@ -10,6 +10,8 @@ namespace CompraVentaCarrosApi.Models
         public Vehiculo()
         {
             Facturas = new HashSet<Factura>();
+            Mensajes = new HashSet<Mensaje>();
+            Venta = new HashSet<Ventum>();
         }
 
         public int Id { get; set; }
@@ -26,8 +28,12 @@ namespace CompraVentaCarrosApi.Models
         public string Imagen2 { get; set; }
         public string Imagen3 { get; set; }
         public string Descripcion { get; set; }
+        public DateTime? Fecha { get; set; }
+        public bool? EstadoCompra { get; set; }
 
         public virtual Persona IdPersonaNavigation { get; set; }
         public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Mensaje> Mensajes { get; set; }
+        public virtual ICollection<Ventum> Venta { get; set; }
     }
 }

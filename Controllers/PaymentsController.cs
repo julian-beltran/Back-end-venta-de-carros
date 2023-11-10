@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CompraVentaCarrosApi.Models;
+using CompraVentaCarrosApi.Models.Request;
+using CompraVentaCarrosApi.Models.Response;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +16,8 @@ namespace CompraVentaCarrosApi.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        // GET: api/<PaymentsController>
-        [HttpGet ("method")]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+    
 
-        // GET api/<PaymentsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<PaymentsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
 
 
     }

@@ -9,6 +9,8 @@ namespace CompraVentaCarrosApi.Models
     {
         public Persona()
         {
+            Mensajes = new HashSet<Mensaje>();
+            Pqrs = new HashSet<Pqr>();
             Usuarios = new HashSet<Usuario>();
             Vehiculos = new HashSet<Vehiculo>();
             Venta = new HashSet<Ventum>();
@@ -24,6 +26,8 @@ namespace CompraVentaCarrosApi.Models
         public int? Edad { get; set; }
         public string Imagen { get; set; }
 
+        public virtual ICollection<Mensaje> Mensajes { get; set; }
+        public virtual ICollection<Pqr> Pqrs { get; set; }
         public virtual ICollection<Usuario> Usuarios { get; set; }
         public virtual ICollection<Vehiculo> Vehiculos { get; set; }
         public virtual ICollection<Ventum> Venta { get; set; }

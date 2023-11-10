@@ -27,7 +27,9 @@ C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\M
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\Microsoft.OpenApi.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\MimeKit.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\NETCore.MailKit.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\BouncyCastle.Crypto.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\Stripe.net.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

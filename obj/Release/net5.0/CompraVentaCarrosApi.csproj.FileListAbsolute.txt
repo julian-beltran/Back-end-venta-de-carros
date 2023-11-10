@@ -72,3 +72,5 @@ C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\CompraVentaC
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\ref\CompraVentaCarrosApi.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\CompraVentaCarrosApi.pdb
 C:\Users\beque\source\repos\CompraVentaCarrosApi\obj\Release\net5.0\CompraVentaCarrosApi.genruntimeconfig.cache
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Release\net5.0\Newtonsoft.Json.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Release\net5.0\Stripe.net.dll

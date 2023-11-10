@@ -159,7 +159,7 @@ namespace CompraVentaCarrosApi.Controllers
             return sb.ToString();
         }
 
-        [HttpPost("send-reset-email/{email}")]
+        [HttpPut("send-reset-email/{email}")]
         public IActionResult SendEmail(string email)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -196,7 +196,7 @@ namespace CompraVentaCarrosApi.Controllers
         }
 
 
-        [HttpPost("reset-password")]
+        [HttpPut("reset-password")]
         public IActionResult ResetPassword(PasswordRequest passwordRequest)
         {
             var newToken = passwordRequest.emailToken.Replace(" ", "+");
@@ -217,19 +217,22 @@ namespace CompraVentaCarrosApi.Controllers
                 }
                 var tokenCode = user.TokenContraseña;
                 DateTime emailTokenExp = (DateTime)user.ExpTokenContraseña;
-                if(tokenCode != passwordRequest.emailToken || emailTokenExp < DateTime.Now)
+                if (tokenCode != passwordRequest.emailToken || emailTokenExp < DateTime.Now)
                 {
 
                     oRespuesta.Exito = 0;
                     oRespuesta.Mensaje = "Link invalido";
 
                 }
-                user.Contraseña= Encrypt.GetSHA256(passwordRequest.newPassword);
-                db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                db.SaveChanges();
-                oRespuesta.Exito = 1;
-                oRespuesta.Mensaje = "Contraseña Actualizada";
-
+                else
+                {
+                    user.Contraseña = Encrypt.GetSHA256(passwordRequest.newPassword);
+                    user.TokenContraseña = "";
+                    db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
+                    oRespuesta.Exito = 1;
+                    oRespuesta.Mensaje = "Contraseña Actualizada";
+                }
             }
             return Ok(oRespuesta);
 

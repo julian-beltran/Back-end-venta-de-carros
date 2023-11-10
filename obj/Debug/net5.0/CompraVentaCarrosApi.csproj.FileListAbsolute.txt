@@ -72,3 +72,5 @@ C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Azure.Storage.
 C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\System.IO.Hashing.dll
 C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\System.Memory.Data.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\beque\source\repos\CompraVentaCarrosApi\bin\Debug\net5.0\Stripe.net.dll
